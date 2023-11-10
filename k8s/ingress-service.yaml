@@ -9,9 +9,22 @@ metadata:
     # ADD ANNOTATION
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     # ADD ANNOTATION
+
+    # temporarily disabled as we do not have a domain name
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    
+    # force user to https
+    # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+
+    
 spec:
   ingressClassName: nginx
   # ADD INGRESSCLASSNAME FIELD
+  # tls: 
+  #   - hots: 
+  #       - k8s-multi.com
+  #       - www.k8s-multi.com
+  #     secretName: k8s-multi-com
   rules:
     - http:
         paths:
