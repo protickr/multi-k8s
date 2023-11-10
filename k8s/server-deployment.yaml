@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
         - name: server 
-          image: protickr/multi-server
+          image: protickr/complex-server
           ports: 
             - containerPort: 5000
           env: 
