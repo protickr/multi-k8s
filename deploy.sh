@@ -1,6 +1,6 @@
 docker build -t protickr/multi-client:latest -t protickr/multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t protickr/multi-server:latest -t protickr/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t protickr/multi-worker:latest -t protickr/multi-worker:$SHA -f ./worker/Dockerfile ./workder
+docker build -t protickr/multi-worker:latest -t protickr/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 docker push protickr/multi-client:latest
 docker push protickr/multi-client:$SHA
