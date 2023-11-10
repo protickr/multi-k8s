@@ -11,43 +11,66 @@ metadata:
     # ADD ANNOTATION
 
     # temporarily disabled as we do not have a domain name
-    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     
     # force user to https
-    # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 
     
 spec:
   ingressClassName: nginx
   # ADD INGRESSCLASSNAME FIELD
-  # tls: 
-  #   - hots: 
-  #       - k8s-multi.com
-  #       - www.k8s-multi.com
-  #     secretName: k8s-multi-com
+  tls: 
+    - hots: 
+        - k8s-multi.com
+        - www.k8s-multi.com
+      secretName: k8s-multi-com
   rules:
-    - http:
-        paths:
-          - path: /?(.*)
-            # UPDATE PATH
-            pathType: ImplementationSpecific
-            # ADD PATHTYPE
-            backend:
-              service:
-                # UPDATE SERVICE FIELDS
-                name: client-cluster-ip-service
-                port:
-                  number: 3000
-          - path: /api/?(.*)
-            # UPDATE PATH
-            pathType: ImplementationSpecific
-            # ADD PATHTYPE
-            backend:
-              service:
-                # UPDATE SERVICE FIELDS
-                name: server-cluster-ip-service
-                port:
-                  number: 5000
-
+    - host: yourdomain.com
+      http:
+          paths:
+            - path: /?(.*)
+              # UPDATE PATH
+              pathType: ImplementationSpecific
+              # ADD PATHTYPE
+              backend:
+                service:
+                  # UPDATE SERVICE FIELDS
+                  name: client-cluster-ip-service
+                  port:
+                    number: 3000
+            - path: /api/?(.*)
+              # UPDATE PATH
+              pathType: ImplementationSpecific
+              # ADD PATHTYPE
+              backend:
+                service:
+                  # UPDATE SERVICE FIELDS
+                  name: server-cluster-ip-service
+                  port:
+                    number: 5000
+    - host: www.yourdomain.com
+      http:
+          paths:
+            - path: /?(.*)
+              # UPDATE PATH
+              pathType: ImplementationSpecific
+              # ADD PATHTYPE
+              backend:
+                service:
+                  # UPDATE SERVICE FIELDS
+                  name: client-cluster-ip-service
+                  port:
+                    number: 3000
+            - path: /api/?(.*)
+              # UPDATE PATH
+              pathType: ImplementationSpecific
+              # ADD PATHTYPE
+              backend:
+                service:
+                  # UPDATE SERVICE FIELDS
+                  name: server-cluster-ip-service
+                  port:
+                    number: 5000
 
 
